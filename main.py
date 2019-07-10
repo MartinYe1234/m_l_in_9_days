@@ -4,13 +4,13 @@ Aiming for 80% accuracy and plus
 """
 
 #import necessary modules
-import sklearn as sk
-import tensorflow as tf
-from tensorflow import keras
-import matplotlib as mpl
-import panda as pd
+from sklearn.ensemble import RandomForestClassifier
+import numpy as np
+from sklearn.model_selection import train_test_split
+from scipy.io import arff
+import pandas as pd
 
 
 
 
-
+#split data into test and train

@@ -14,19 +14,24 @@ import os
 #access to data
 os.chdir(r"C:\Users\User\Desktop")
 storeData = pd.read_csv('Sales_Transactions_Dataset_Weekly.csv')
+
 #format data
 df = pd.DataFrame(storeData)
-#x_train is the training from column 0 to 50 - THIS NEEDS TO BE A LIST
-xVar = df.loc[:,'Normalized 0':'Normalized 50']
+list(df)
 
-print(xVar)
-#y_train is the test - column 51
-yVar = df['Normalized 51']   
+#x_train is the training from column 0 to 50 - THIS NEEDS TO BE A LIST  
+#xVar = df.loc[:,'Normalized 0':'Normalized 50']
+
+#formatting data
+xVar = df.drop(df.columns[0:55],axis = 1)
+xVar = xVar.drop('Normalized 51',axis = 1)
+yVar = df['Normalized 51']
+
 #splits data into 80% training and 20% testing
-X_train, X_test, y_train, y_test = train_test_split(xVar, yVar, test_size=0.2)
-
+X_train, X_test, y_train, y_test = train_test_split(xVar, yVar, test_size=0.2,shuffle = False)
+"""
 clf = RandomForestClassifier(n_jobs=2, random_state=0)
-
+#everything up to here works
 clf.fit(X_train, y_train)
 
 RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
@@ -39,3 +44,4 @@ RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
 predictions = clf.predict(X_test)
 #check accuracy
 pd.crosstab(y_test, predictions, rownames=['Actual Result'], colnames=['Predicted Result'])
+"""

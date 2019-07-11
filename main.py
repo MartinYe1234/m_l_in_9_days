@@ -16,23 +16,26 @@ os.chdir(r"C:\Users\User\Desktop")
 storeData = pd.read_csv('Sales_Transactions_Dataset_Weekly.csv')
 #format data
 df = pd.DataFrame(storeData)
-#x_train is the training - wip
-x_train = df["W0"]
-#y_train is the test
-y_train = df['Normalized 51']   
-print(df)
-print(x_train)
+#x_train is the training from column 0 to 50 - THIS NEEDS TO BE A LIST
+xVar = df.loc[:,'Normalized 0':'Normalized 50']
 
+print(xVar)
+#y_train is the test - column 51
+yVar = df['Normalized 51']   
+#splits data into 80% training and 20% testing
+X_train, X_test, y_train, y_test = train_test_split(xVar, yVar, test_size=0.2)
 
-"""
-xVar = df.loc['']
+clf = RandomForestClassifier(n_jobs=2, random_state=0)
 
-:)
+clf.fit(X_train, y_train)
 
-yVar = df.iloc[:,20]
-df2 = df[xVar]
-"""
-#split data into test and train - p1 (first 700 no prediction last 100 50 days train 1 day test)
-#x - train 50 days
-#y - test 1 day
+RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=None, max_features='auto', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=10, n_jobs=2, oob_score=False, random_state=0,
+            verbose=0, warm_start=False)
 
+predictions = clf.predict(X_test)
+#check accuracy
+pd.crosstab(y_test, predictions, rownames=['Actual Result'], colnames=['Predicted Result'])

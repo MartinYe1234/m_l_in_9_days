@@ -25,12 +25,13 @@ df = pd.DataFrame(storeData)
 
 #access only the data that is to be used
 xVar = df.drop('Normalized 51',axis = 1)
-for i in range(52):
-    xVar = xVar.drop(('W'+str(i)),axis = 1)
-xVar = xVar.drop('MIN',axis = 1)
-xVar = xVar.drop('MAX',axis = 1)
-xVar = xVar.drop('Product_Code',axis = 1)
-yVar = df['Normalized 51']
+# for i in range(52):
+#     xVar = xVar.drop(('W'+str(i)),axis = 1)
+# xVar = xVar.drop('MIN',axis = 1)
+# xVar = xVar.drop('MAX',axis = 1)
+# xVar = xVar.drop('Product_Code',axis = 1)
+xVar = df.loc[:,'Normalized 0':'Normalized 50']
+yVar = df.iloc[:,106]
 
 #used to check if
 
@@ -45,8 +46,7 @@ rnd_clf = RandomForestRegressor(n_estimators=1000, criterion="mse", n_jobs=-1)
 rnd_clf.fit(X_train, y_train)
 
 #make predictions
-y_pred = rnd_clf.predict(X_train)
-# print(mean_squared_error(y_test,y_pred))
+y_pred = rnd_clf.predict(X_test)
 """
 Graphing
 """
@@ -54,7 +54,6 @@ Graphing
 fig = plt.figure()
 #data to plot
 actual = [i for i in range(51)]
-print(list(df.iloc[:,106]))
 predictions = [i+1 for i in range(51)]
 #x axis is number of days which is 51 days from day 0 to 50
 x_axis = [i for i in range(51)]

@@ -1,5 +1,5 @@
 """
-Random forest on grocery store data. 
+Random forest on something. 
 Aiming for 80% accuracy and plus
 """
 
@@ -25,15 +25,9 @@ df = pd.DataFrame(storeData)
 
 #access only the data that is to be used
 xVar = df.drop('Normalized 51',axis = 1)
-# for i in range(52):
-#     xVar = xVar.drop(('W'+str(i)),axis = 1)
-# xVar = xVar.drop('MIN',axis = 1)
-# xVar = xVar.drop('MAX',axis = 1)
-# xVar = xVar.drop('Product_Code',axis = 1)
+
 xVar = df.loc[:,'Normalized 0':'Normalized 50']
 yVar = df.iloc[:,106]
-
-#used to check if
 
 #splits data into 80% training and 20% testing
 X_train, X_test, y_train, y_test = train_test_split(xVar, yVar, test_size=0.2)

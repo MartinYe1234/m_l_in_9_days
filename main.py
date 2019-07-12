@@ -41,12 +41,14 @@ X_train, X_test, y_train, y_test = train_test_split(xVar, yVar, test_size=0.2)
 """
 Random Forest
 """
-rnd_clf = RandomForestRegressor(n_estimators=1000, criterion="mse", n_jobs=-1)
+rnd_clf = RandomForestRegressor(n_estimators=500, max_leaf_nodes=32, n_jobs=-1,verbose=1)
 
 rnd_clf.fit(X_train, y_train)
 
 #make predictions
 y_pred = rnd_clf.predict(X_test)
+#calculate error
+print(rnd_clf.score(X_test, y_test))
 """
 Graphing
 """

@@ -1,2 +1,18 @@
 # m_l_in_9_days
-9 days from scratch lets go
+Starting ML for Shad project
+
+So far learned:
+
+Random forest
+
+Time series forecast
+
+ARIMA
+
+To learn:
+
+Support Vector Machine Gradience
+
+Long-Short Term Memory
+
+

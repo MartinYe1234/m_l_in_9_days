@@ -5,8 +5,6 @@ So far learned:
 
 Random forest
 
-Time series forecast
-
 ARIMA
 
 To learn:
@@ -14,5 +12,4 @@ To learn:
 Support Vector Machine Gradience
 
 Long-Short Term Memory
-
 
